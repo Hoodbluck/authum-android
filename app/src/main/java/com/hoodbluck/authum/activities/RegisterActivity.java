@@ -7,6 +7,7 @@ import com.hoodbluck.authum.R;
 import com.hoodbluck.authum.managers.UserManager;
 import com.hoodbluck.authum.models.User;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -40,7 +41,7 @@ public class RegisterActivity extends BaseActivity {
     @Bean
     UserManager mUserManager;
 
-    @Override
+    @AfterViews
     public void afterViews() {
     }
 

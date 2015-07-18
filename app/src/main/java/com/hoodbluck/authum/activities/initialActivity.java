@@ -16,7 +16,8 @@ public class initialActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO see if user has to register
-        RegisterActivity_.intent(this)
+
+        LoginActivity_.intent(this)
                 .start();
         finish();
     }

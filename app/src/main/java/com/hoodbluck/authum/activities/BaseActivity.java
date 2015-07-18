@@ -3,7 +3,6 @@ package com.hoodbluck.authum.activities;
 import android.app.Activity;
 import android.widget.Toast;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 
@@ -14,10 +13,6 @@ import org.androidannotations.annotations.UiThread;
  */
 @EActivity
 public class BaseActivity extends Activity {
-
-    @AfterViews
-    public void afterViews() {
-    }
 
     @UiThread
     public void showToast(String message) {
