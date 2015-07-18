@@ -23,5 +23,8 @@ public interface AuthumHttpInterface extends RestClientRootUrl, RestClientSuppor
 
         @Post("/user")
         AuthumResponse register(User user);
+
+        @Post("/user/login?user={username}&password={password}")
+        AuthumResponse login(String username, String password);
 }
 

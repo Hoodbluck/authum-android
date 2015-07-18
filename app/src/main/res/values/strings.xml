@@ -22,4 +22,5 @@
     <string name="do_not_have_account_yet">Don\'t have an account?</string>
     <string name="register">Register</string>
     <string name="required_field">Required Field</string>
+    <string name="invalid_credentials">The email address or password you provided is wrong</string>
 </resources>

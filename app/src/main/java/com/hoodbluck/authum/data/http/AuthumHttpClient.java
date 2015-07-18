@@ -21,4 +21,8 @@ public class AuthumHttpClient {
     public AuthumResponse register(User user) {
         return mService.register(user);
     }
+
+    public AuthumResponse login(String username, String password) {
+        return mService.login(username, password);
+    }
 }

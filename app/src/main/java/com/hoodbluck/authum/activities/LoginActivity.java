@@ -3,9 +3,12 @@ package com.hoodbluck.authum.activities;
 import android.widget.EditText;
 
 import com.hoodbluck.authum.R;
+import com.hoodbluck.authum.managers.UserManager;
 import com.hoodbluck.authum.utils.ViewUtil;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -25,6 +28,9 @@ public class LoginActivity extends BaseActivity{
     @ViewById(R.id.password_input)
     EditText mPasswordInput;
 
+    @Bean
+    UserManager mUserManager;
+
     @AfterViews
     public void afterViews() {
 
@@ -41,7 +47,31 @@ public class LoginActivity extends BaseActivity{
         ArrayList<EditText> editTextList = new ArrayList<>();
         editTextList.add(mEmailInput);
         editTextList.add(mPasswordInput);
-        ViewUtil.isFormValid(this, editTextList);
+        if (ViewUtil.isFormValid(this, editTextList)) {
+           logUserIn();
+        }
+    }
+
+    @Background
+    protected void logUserIn() {
+        mUserManager.login(mEmailInput.getText().toString().trim(), mPasswordInput.getText().toString().trim(), new UserManager.UserLoginCallback() {
+            @Override
+            public void loginSuccess() {
+                showToast("Login a success");
+            }
+
+            @Override
+            public void loginFailUnknown() {
+                showToast("Login failed for an unknown reason");
+
+            }
+
+            @Override
+            public void loginFailInvalidCredential() {
+                showAlert(getString(R.string.invalid_credentials));
+            }
+        });
+
     }
 
 }
