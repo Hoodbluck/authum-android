@@ -21,4 +21,5 @@
     <string name="login">Login</string>
     <string name="do_not_have_account_yet">Don\'t have an account?</string>
     <string name="register">Register</string>
+    <string name="required_field">Required Field</string>
 </resources>
