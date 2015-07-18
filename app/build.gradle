@@ -20,6 +20,8 @@ dependencies {
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'com.google.code.gson:gson:2.3'
+    compile 'commons-lang:commons-lang:2.6'
+    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
 }
 
 apt {
