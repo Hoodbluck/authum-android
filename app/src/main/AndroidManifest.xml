@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".activities.RegisterActivity_"
             android:label="Registration"/>
+        <activity android:name=".activities.LoginActivity_"
+                  android:label="Login"/>
 
     </application>
 

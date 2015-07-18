@@ -16,10 +16,15 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
  *
  * @author Skye Schneider
  */
-@Rest(rootUrl = "http://authum.hoodbluck.com", converters = { StringHttpMessageConverter.class, GsonHttpMessageConverter.class})
+@Rest(rootUrl = "http://authum.hoodbluck.com",
+        converters = { StringHttpMessageConverter.class, GsonHttpMessageConverter.class},
+        interceptors = RestHeaderInterceptor.class)
 public interface AuthumHttpInterface extends RestClientRootUrl, RestClientSupport, RestClientHeaders {
 
         @Post("/user")
         AuthumResponse register(User user);
+
+        @Post("/user/login?user={username}&password={password}")
+        AuthumResponse login(String username, String password);
 }
 
