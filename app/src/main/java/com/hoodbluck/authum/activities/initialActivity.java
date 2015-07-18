@@ -1,9 +1,11 @@
-package com.hoodbluck.authum;
+package com.hoodbluck.authum.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.hoodbluck.authum.R;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -14,6 +16,7 @@ public class initialActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO see if user has to register
+        RegisterActivity_.intent(this).start();
 
 
     }

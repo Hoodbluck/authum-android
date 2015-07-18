@@ -10,5 +10,5 @@ import org.androidannotations.annotations.EActivity;
  * @author Skye Schneider
  */
 @EActivity(R.layout.activity_register)
-public class RegisterActivity {
+public class RegisterActivity extends BaseActivity {
 }
