@@ -47,8 +47,13 @@ public class RegisterActivity extends BaseActivity {
     @Click(R.id.register_button)
     public void onRegisterButtonClick() {
         Log.d(TAG, "Please log this");
-        User user = new User("Bill", "Bo", "BillBo@Example.com", "password");
         if(isFormValid()) {
+            User user =  new User(
+                    mFirstNameInput.getText().toString(),
+                    mLastNameInput.getText().toString(),
+                    mEmailInput.getText().toString(),
+                    mPasswordInput.getText().toString()
+            );
             registerUser(user);
         }
     }
@@ -80,6 +85,13 @@ public class RegisterActivity extends BaseActivity {
             mReEnterPasswordInput.setHint(getString(R.string.password_required));
             inValidForms.add(mReEnterPasswordInput);
             valid = false;
+        }
+
+        if (!StringUtils.equals(mPasswordInput.getText().toString(), mReEnterPasswordInput.getText().toString())) {
+            mReEnterPasswordInput.setHint(getString(R.string.password_do_not_equal));
+            mReEnterPasswordInput.setText("");
+            valid = false;
+            inValidForms.add(mReEnterPasswordInput);
         }
 
         if (!valid) {
