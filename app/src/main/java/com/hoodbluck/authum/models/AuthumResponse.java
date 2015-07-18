@@ -5,12 +5,39 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Created on 7/18/15.
  *
  * @author Skye Schneider
  */
 public class AuthumResponse implements Parcelable {
+
+    public enum AuthumResponseStatus {
+        SUCCESS("success"),
+        USER_INVALID("user_invalid"),
+        USER_ALREADY_REGISTERED("user_already_registered"),
+        LOGIN_INVALID("login_invalid"),
+        UNKNOWN("unknown");
+
+        private String mText;
+        AuthumResponseStatus(String text) {
+            mText = text;
+        }
+
+        public static AuthumResponseStatus getAuthumResponse(String value) {
+            AuthumResponseStatus status = UNKNOWN;
+            for (AuthumResponseStatus responseStatus : AuthumResponseStatus.values()) {
+                if (StringUtils.equalsIgnoreCase(value, responseStatus.mText)) {
+                    status = responseStatus;
+                    break;
+                }
+            }
+            return status;
+        }
+    }
+
     @SerializedName("code")
     private int code;
     @SerializedName("status")

@@ -13,4 +13,8 @@
     <string name="password">Password</string>
     <string name="password_hint">********</string>
     <string name="re_enter_password">Re-enter Password</string>
+    <string name="first_name_required">First Name Required</string>
+    <string name="last_name_required">Last Name Required</string>
+    <string name="email_required">Email Required</string>
+    <string name="password_required">Password Required</string>
 </resources>

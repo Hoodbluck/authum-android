@@ -25,6 +25,13 @@ public class User implements Parcelable {
     @SerializedName("deviceToken")
     private String deviceToken;
 
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this. email = email;
+        this.password = password;
+    }
+
     public long getUserId() {
         return userId;
     }
@@ -88,8 +95,6 @@ public class User implements Parcelable {
         dest.writeString(this.deviceToken);
     }
 
-    public User() {
-    }
 
     protected User(Parcel in) {
         this.userId = in.readLong();
