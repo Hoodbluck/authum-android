@@ -14,7 +14,7 @@
         <item name="android:height">100dp</item>
         <item name="android:textSize">40sp</item>
         <item name="android:titleTextStyle">@style/MyText</item>
-        <item name="android:elevation">3dp</item>
+        <item name="android:elevation">5dp</item>
         <item name="android:textColor">@color/primary_color_dark</item>
     </style>
     <style name="MyText" parent="android:TextAppearance" >
