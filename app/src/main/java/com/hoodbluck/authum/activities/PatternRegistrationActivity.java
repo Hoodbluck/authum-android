@@ -1,6 +1,7 @@
 package com.hoodbluck.authum.activities;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hoodbluck.authum.data.prefs.Prefs_;
 
@@ -30,7 +31,6 @@ public class PatternRegistrationActivity extends SetPatternActivity {
         String patternSha = PatternUtils.patternToSha1String(pattern);
         Log.d(TAG, "patterSha = " + patternSha);
         mPrefs.patterSha().put(patternSha);
-
-
+        Toast.makeText(this, "Authum is ready to use", Toast.LENGTH_LONG).show();
     }
 }

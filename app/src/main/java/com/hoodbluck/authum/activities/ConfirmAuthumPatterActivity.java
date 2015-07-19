@@ -11,7 +11,6 @@ import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.apache.commons.lang.StringUtils;
 
@@ -56,12 +55,6 @@ public class ConfirmAuthumPatterActivity extends ConfirmPatternActivity {
     @Background
     protected void authenticate(boolean isCorrect) {
         mUserManager.authenticate(mPrefs.email().get(), mClientId, isCorrect);
-        finishThis();
-    }
-
-    @UiThread
-    protected void finishThis() {
-        finish();
     }
 
     @Override
