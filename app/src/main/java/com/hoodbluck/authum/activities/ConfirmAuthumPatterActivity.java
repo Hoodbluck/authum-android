@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import com.hoodbluck.authum.R;
 import com.hoodbluck.authum.data.prefs.Prefs_;
 import com.hoodbluck.authum.managers.UserManager;
-import com.hoodbluck.authum.models.GcmData;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
@@ -36,7 +35,7 @@ public class ConfirmAuthumPatterActivity extends ConfirmPatternActivity {
     UserManager mUserManager;
 
     @Extra
-    GcmData mData;
+    String mClientId;
 
     @Override
     protected boolean isStealthModeEnabled() {
@@ -49,13 +48,13 @@ public class ConfirmAuthumPatterActivity extends ConfirmPatternActivity {
         // TODO: Get saved pattern sha1.
         String patternSha = mPrefs.patterSha().get();
         boolean isCorrect = StringUtils.equals(PatternUtils.patternToSha1String(pattern), patternSha);
-        authenticate(mData, isCorrect);
+        authenticate(isCorrect);
         return isCorrect;
     }
 
     @Background
-    protected void authenticate(GcmData data, boolean isCorrect) {
-        mUserManager.authenticate(mPrefs.email().get(), data.getClientId(), isCorrect);
+    protected void authenticate(boolean isCorrect) {
+        mUserManager.authenticate(mPrefs.email().get(), mClientId, isCorrect);
     }
 
     @Override

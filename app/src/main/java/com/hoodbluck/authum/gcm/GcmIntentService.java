@@ -42,9 +42,11 @@ public class GcmIntentService extends IntentService {
         GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
         // The getMessageType() intent parameter must be the intent you received
         // in your BroadcastReceiver.
-        GcmData data = new Gson().fromJson(extras.getString("data"), GcmData.class);
+        if (extras != null) {
+            GcmData data = new Gson().fromJson(extras.getString("data"), GcmData.class);
 
-        sendNotification(data);
+            sendNotification(data);
+        }
 
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GcmReceiver.completeWakefulIntent(intent);
@@ -55,15 +57,18 @@ public class GcmIntentService extends IntentService {
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent intent = ConfirmAuthumPatterActivity_.intent(this)
-                .mData(data).get();
+                .mClientId(data.getClientId())
+                .get();
+
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                intent, 0);
+                intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.common_signin_btn_icon_light)
                         .setContentTitle("Authum")
+                        .setAutoCancel(true)
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(data.getMessage()))
                         .setContentText(data.getMessage());
