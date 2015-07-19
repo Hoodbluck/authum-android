@@ -15,7 +15,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 
@@ -74,17 +73,12 @@ public class LoginActivity extends BaseActivity{
             public void loginSuccess() {
                 showToast("Login a success");
                 mPrefs.email().put(mEmailInput.getText().toString().trim());
-                if (StringUtils.isEmpty(mPrefs.patterSha().get())) {
-                    showAlert(getString(R.string.no_pattern), mOnClickListener);
-
-                }
-
+                showAlert(getString(R.string.no_pattern), mOnClickListener);
             }
 
             @Override
             public void loginFailUnknown() {
                 showToast("Login failed for an unknown reason");
-
             }
 
             @Override
