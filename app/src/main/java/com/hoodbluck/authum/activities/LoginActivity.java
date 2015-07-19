@@ -54,6 +54,7 @@ public class LoginActivity extends BaseActivity{
     public void onRegistrationButtonClick() {
         RegisterActivity_.intent(this)
                 .start();
+        finish();
     }
 
     @Click(R.id.login_button)

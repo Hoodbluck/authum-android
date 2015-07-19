@@ -18,7 +18,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
-import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,15 +84,13 @@ public class RegisterActivity extends BaseActivity {
                 @Override
                 public void registrationSuccess() {
                     mPrefs.email().put(user.getEmail());
-                    if (StringUtils.isEmpty(mPrefs.patterSha().get())) {
-                        showAlert(getString(R.string.no_pattern), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                PatternRegistrationActivity_.intent(RegisterActivity.this).start();
-                                RegisterActivity.this.finish();
-                            }
-                        });
+                    showAlert(getString(R.string.no_pattern), new DialogInterface.OnClickListener() {
+                                                                                       @Override
+                                                                                       public void onClick(DialogInterface dialog, int which) {
+                            PatternRegistrationActivity_.intent(RegisterActivity.this).start();
+                            RegisterActivity.this.finish();
                     }
+                });
                     showToast("registration a success");
                 }
 
