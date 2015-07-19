@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.hoodbluck.authum.R;
+import com.hoodbluck.authum.data.prefs.Prefs_;
 import com.hoodbluck.authum.managers.UserManager;
 import com.hoodbluck.authum.models.User;
 import com.hoodbluck.authum.utils.ViewUtil;
@@ -15,6 +16,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +46,9 @@ public class RegisterActivity extends BaseActivity {
     @Bean
     UserManager mUserManager;
 
+    @Pref
+    Prefs_ mPrefs;
+
     @AfterViews
     public void afterViews() {
     }
@@ -69,7 +74,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Background
-    protected void registerUser(User user) {
+    protected void registerUser(final User user) {
 
         String token = requestGcmToken();
         if (token != null) {
@@ -77,6 +82,7 @@ public class RegisterActivity extends BaseActivity {
             mUserManager.register(user, new UserManager.UserRegistrationCallback() {
                 @Override
                 public void registrationSuccess() {
+                    mPrefs.email().put(user.getEmail());
                     showToast("registration a success");
                 }
 
