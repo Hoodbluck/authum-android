@@ -73,6 +73,7 @@ public class LoginActivity extends BaseActivity{
             @Override
             public void loginSuccess() {
                 showToast("Login a success");
+                mPrefs.email().put(mEmailInput.getText().toString().trim());
                 if (StringUtils.isEmpty(mPrefs.patterSha().get())) {
                     showAlert(getString(R.string.no_pattern), mOnClickListener);
 

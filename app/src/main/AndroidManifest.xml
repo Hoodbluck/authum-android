@@ -46,6 +46,10 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
+        <provider android:name=".provider.EmailProvider_"
+                  android:authorities="com.hoodbluck.authum.provider"
+                    android:exported="true">
+        </provider>
 
     </application>
 

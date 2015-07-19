@@ -10,4 +10,5 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
 @SharedPref(SharedPref.Scope.UNIQUE)
 public interface Prefs {
     String patterSha();
+    String email();
 }
