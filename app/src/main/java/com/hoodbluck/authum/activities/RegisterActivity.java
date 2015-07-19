@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class RegisterActivity extends BaseActivity {
 
     public static final String TAG = RegisterActivity.class.getSimpleName();
-    private static final String SENDER_ID = "323628330526";
+    private static final String SENDER_ID = "303628330526";
 
     @ViewById(R.id.first_name_input)
     EditText mFirstNameInput;
