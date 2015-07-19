@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_color">#18ffaf</color>
-    <color name="primary_color_dark">#00ff00</color>
-    <color name="accent_color">#ff00ff</color>
-    <color name="title_bar_text_color">#FFFFFF</color>
+    <color name="primary_color">#2196F3</color>
+    <color name="primary_color_dark">#1976D2</color>
+    <color name="accent_color">#E040FB</color>
+    <color name="title_bar_text_color">#C5CAE9</color>
     <color name="red">#FF0000</color>
 </resources>
