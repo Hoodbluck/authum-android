@@ -13,6 +13,7 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'com.google.gms.google-services'
 def AAVersion = '3.3.2'
 
 dependencies {
@@ -22,6 +23,12 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3'
     compile 'commons-lang:commons-lang:2.6'
     compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+    compile "com.google.android.gms:play-services:3.1.+"
+    compile 'com.android.support:support-v13:21.0.3'
+    compile 'com.github.DreaminginCodeZH:PatternLock:v1.0.0'
+
+
+
 }
 
 apt {

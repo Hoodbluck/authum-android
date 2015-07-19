@@ -3,6 +3,7 @@ package com.hoodbluck.authum.activities;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.hoodbluck.authum.R;
 import com.hoodbluck.authum.managers.UserManager;
 import com.hoodbluck.authum.models.User;
@@ -15,6 +16,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 public class RegisterActivity extends BaseActivity {
 
     public static final String TAG = RegisterActivity.class.getSimpleName();
+    private static final String SENDER_ID = "303628330526";
 
     @ViewById(R.id.first_name_input)
     EditText mFirstNameInput;
@@ -67,26 +70,45 @@ public class RegisterActivity extends BaseActivity {
 
     @Background
     protected void registerUser(User user) {
-        mUserManager.register(user, new UserManager.UserRegistrationCallback() {
-            @Override
-            public void registrationSuccess() {
-                showToast("registration a success");
-            }
 
-            @Override
-            public void registrationFailureUnknown() {
-                showToast("registration failed unknown");
-            }
+        String token = requestGcmToken();
+        if (token != null) {
+            user.setDeviceToken(token);
+            mUserManager.register(user, new UserManager.UserRegistrationCallback() {
+                @Override
+                public void registrationSuccess() {
+                    showToast("registration a success");
+                }
 
-            @Override
-            public void registrationFailureUserInvalid() {
-                showToast("registration failed invalid");
-            }
+                @Override
+                public void registrationFailureUnknown() {
+                    showToast("registration failed unknown");
+                }
 
-            @Override
-            public void registgrationFailureUserDupilcated() {
-                showToast("registration failed duplicate");
-            }
-        });
+                @Override
+                public void registrationFailureUserInvalid() {
+                    showToast("registration failed invalid");
+                }
+
+                @Override
+                public void registgrationFailureUserDupilcated() {
+                    showToast("registration failed duplicate");
+                }
+            });
+        }
+
+        else {
+            showAlert("Something went wrong with the registration.");
+        }
+    }
+
+    private String requestGcmToken() {
+        try {
+            GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+            return gcm.register(SENDER_ID);
+
+        } catch (IOException ex) {
+            return null;
+        }
     }
 }

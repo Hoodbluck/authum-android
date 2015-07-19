@@ -23,4 +23,6 @@
     <string name="register">Register</string>
     <string name="required_field">Required Field</string>
     <string name="invalid_credentials">The email address or password you provided is wrong</string>
+    <string name="ok">OK</string>
+    <string name="aw_shucks">Aww Shucks</string>
 </resources>
