@@ -8,9 +8,6 @@
     
     <style name="MyActionBar" parent="android:Widget.Holo.ActionBar.Solid" >
         <item name="android:background">@color/primary_color</item>
-        <item name="android:textSize">40sp</item>
-        <item name="android:titleTextStyle">@style/MyText</item>
-        <item name="android:elevation">3dp</item>
     </style>
 
     <style name="MyText" parent="android:TextAppearance" >
