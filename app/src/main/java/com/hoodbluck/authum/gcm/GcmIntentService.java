@@ -7,17 +7,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.gson.Gson;
 import com.hoodbluck.authum.R;
 import com.hoodbluck.authum.activities.ConfirmAuthumPatterActivity_;
+import com.hoodbluck.authum.models.GcmData;
+
+import org.androidannotations.annotations.EService;
 
 /**
  * Created on 7/18/15.
  *
  * @author Skye Schneider
  */
+@EService
 public class GcmIntentService extends IntentService {
 
     public static final int NOTIFICATION_ID = 0x2345;
@@ -38,28 +42,31 @@ public class GcmIntentService extends IntentService {
         GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
         // The getMessageType() intent parameter must be the intent you received
         // in your BroadcastReceiver.
-        String messageType = gcm.getMessageType(intent);
-        Log.d("adrian", "sent me a message");
-        sendNotification("hello Adrian");
+        GcmData data = new Gson().fromJson(extras.getString("data"), GcmData.class);
+
+        sendNotification(data);
 
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GcmReceiver.completeWakefulIntent(intent);
     }
 
-    private void sendNotification(String msg) {
+    private void sendNotification(GcmData data) {
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        Intent intent = ConfirmAuthumPatterActivity_.intent(this)
+                .mData(data).get();
+
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, ConfirmAuthumPatterActivity_.class), 0);
+                intent, 0);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.common_signin_btn_icon_light)
-                        .setContentTitle("GCM Notification")
+                        .setContentTitle("Authum")
                         .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(msg))
-                        .setContentText(msg);
+                                .bigText(data.getMessage()))
+                        .setContentText(data.getMessage());
 
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
