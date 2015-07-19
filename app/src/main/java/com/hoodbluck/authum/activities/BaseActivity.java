@@ -24,17 +24,24 @@ public class BaseActivity extends Activity {
     }
 
     @UiThread
-    public void showAlert(String message) {
+    public void showAlert(String message, DialogInterface.OnClickListener onClickListener) {
+        if (onClickListener == null) {
+            onClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            };
+        }
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setMessage(message)
                 .setTitle(getString(R.string.aw_shucks))
-                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
+                .setPositiveButton(getString(R.string.ok), onClickListener)
                 .create();
         dialog.show();
+    }
+
+    public void showAlert(String message) {
+        showAlert(message, null);
     }
 }

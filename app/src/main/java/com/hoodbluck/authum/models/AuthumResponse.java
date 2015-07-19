@@ -43,14 +43,6 @@ public class AuthumResponse implements Parcelable {
     @SerializedName("status")
     private String status;
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
     public int getCode() {
         return code;
     }
@@ -67,9 +59,6 @@ public class AuthumResponse implements Parcelable {
         this.status = status;
     }
 
-    @SerializedName("value")
-    private String value;
-
     @Override
     public int describeContents() {
         return 0;
@@ -79,7 +68,6 @@ public class AuthumResponse implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.code);
         dest.writeString(this.status);
-        dest.writeString(this.value);
     }
 
     public AuthumResponse() {
@@ -88,7 +76,6 @@ public class AuthumResponse implements Parcelable {
     protected AuthumResponse(Parcel in) {
         this.code = in.readInt();
         this.status = in.readString();
-        this.value = in.readString();
     }
 
     public static final Parcelable.Creator<AuthumResponse> CREATOR = new Parcelable.Creator<AuthumResponse>() {

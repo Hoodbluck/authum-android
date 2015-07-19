@@ -17,8 +17,10 @@ public class initialActivity extends Activity {
         super.onCreate(savedInstanceState);
         //TODO see if user has to register
 
-        LoginActivity_.intent(this)
-                .start();
+        ConfirmAuthumPatterActivity_.intent(this).start();
+
+//        LoginActivity_.intent(this)
+//                .start();
         finish();
     }
 
