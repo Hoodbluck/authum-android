@@ -26,6 +26,10 @@
             android:label="Registration"/>
         <activity android:name=".activities.LoginActivity_"
                   android:label="Login"/>
+        <activity android:name=".activities.PatternRegistrationActivity_"
+                  android:label="Set Up Pattern"/>
+        <activity android:name=".activities.ConfirmAuthumPatterActivity_"
+                  android:label="Confirm Pattern"/>
 
         <receiver
             android:name=".gcm.GcmReceiver"

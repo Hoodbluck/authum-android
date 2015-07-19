@@ -25,4 +25,6 @@
     <string name="invalid_credentials">The email address or password you provided is wrong</string>
     <string name="ok">OK</string>
     <string name="aw_shucks">Aww Shucks</string>
+    <string name="no_pattern">You have not set up a pattern yet. Please set one up now.</string>
+    <string name="reset_pattern">You will need to login to your account again to reset the patter.</string>
 </resources>

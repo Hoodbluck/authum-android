@@ -1,8 +1,10 @@
 package com.hoodbluck.authum.activities;
 
+import android.content.DialogInterface;
 import android.widget.EditText;
 
 import com.hoodbluck.authum.R;
+import com.hoodbluck.authum.data.prefs.Prefs_;
 import com.hoodbluck.authum.managers.UserManager;
 import com.hoodbluck.authum.utils.ViewUtil;
 
@@ -12,6 +14,8 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 
@@ -30,6 +34,17 @@ public class LoginActivity extends BaseActivity{
 
     @Bean
     UserManager mUserManager;
+
+    @Pref
+    Prefs_ mPrefs;
+
+    private DialogInterface.OnClickListener mOnClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            PatternRegistrationActivity_.intent(LoginActivity.this).start();
+            finish();
+        }
+    };
 
     @AfterViews
     public void afterViews() {
@@ -58,6 +73,11 @@ public class LoginActivity extends BaseActivity{
             @Override
             public void loginSuccess() {
                 showToast("Login a success");
+                if (StringUtils.isEmpty(mPrefs.patterSha().get())) {
+                    showAlert(getString(R.string.no_pattern), mOnClickListener);
+
+                }
+
             }
 
             @Override
