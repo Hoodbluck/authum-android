@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.hoodbluck.authum.R;
-import com.hoodbluck.authum.activities.LoginActivity_;
+import com.hoodbluck.authum.activities.ConfirmAuthumPatterActivity_;
 
 /**
  * Created on 7/18/15.
@@ -51,7 +51,7 @@ public class GcmIntentService extends IntentService {
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, LoginActivity_.class), 0);
+                new Intent(this, ConfirmAuthumPatterActivity_.class), 0);
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)

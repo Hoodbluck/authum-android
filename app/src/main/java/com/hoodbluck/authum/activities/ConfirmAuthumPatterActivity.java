@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 
 import com.hoodbluck.authum.R;
 import com.hoodbluck.authum.data.prefs.Prefs_;
+import com.hoodbluck.authum.managers.UserManager;
 
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.apache.commons.lang.StringUtils;
@@ -27,6 +30,9 @@ public class ConfirmAuthumPatterActivity extends ConfirmPatternActivity {
     @Pref
     Prefs_ mPrefs;
 
+    @Bean
+    UserManager mUserManager;
+
     @Override
     protected boolean isStealthModeEnabled() {
         // TODO: Return the value from SharedPreferences.
@@ -37,7 +43,14 @@ public class ConfirmAuthumPatterActivity extends ConfirmPatternActivity {
     protected boolean isPatternCorrect(List<PatternView.Cell> pattern) {
         // TODO: Get saved pattern sha1.
         String patternSha = mPrefs.patterSha().get();
-        return StringUtils.equals(PatternUtils.patternToSha1String(pattern), patternSha);
+        boolean isCorrect = StringUtils.equals(PatternUtils.patternToSha1String(pattern), patternSha);
+        authenticate(isCorrect);
+        return isCorrect;
+    }
+
+    @Background
+    protected void authenticate(boolean isCorrect) {
+        mUserManager.authenticate(mPrefs.email().get(), "sample_authum_client", isCorrect);
     }
 
     @Override

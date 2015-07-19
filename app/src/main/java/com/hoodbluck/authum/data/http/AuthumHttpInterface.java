@@ -3,8 +3,10 @@ package com.hoodbluck.authum.data.http;
 import com.hoodbluck.authum.models.AuthumResponse;
 import com.hoodbluck.authum.models.User;
 
+import org.androidannotations.annotations.rest.Accept;
 import org.androidannotations.annotations.rest.Post;
 import org.androidannotations.annotations.rest.Rest;
+import org.androidannotations.api.rest.MediaType;
 import org.androidannotations.api.rest.RestClientHeaders;
 import org.androidannotations.api.rest.RestClientRootUrl;
 import org.androidannotations.api.rest.RestClientSupport;
@@ -26,5 +28,9 @@ public interface AuthumHttpInterface extends RestClientRootUrl, RestClientSuppor
 
         @Post("/user/login?user={username}&password={password}")
         AuthumResponse login(String username, String password);
+
+        @Post("/user/email/{userEmail}/client/{clientId}/auth/{isCorrect}")
+        @Accept(MediaType.APPLICATION_FORM_URLENCODED)
+        AuthumResponse authenticate(String userEmail, String clientId, String isCorrect);
 }
 

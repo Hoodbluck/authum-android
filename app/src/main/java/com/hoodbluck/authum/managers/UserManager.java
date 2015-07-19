@@ -71,6 +71,11 @@ public class UserManager {
 
     }
 
+    public void authenticate(String email, String appId, boolean isCorrect) {
+        String correct = isCorrect ? "1" : "0";
+        mAuthumHttpClient.authenticate(email, appId, correct);
+    }
+
     public static abstract class UserRegistrationCallback {
         public abstract void registrationSuccess();
         public abstract void registrationFailureUnknown();
