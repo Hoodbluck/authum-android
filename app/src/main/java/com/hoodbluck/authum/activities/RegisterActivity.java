@@ -90,7 +90,7 @@ public class RegisterActivity extends BaseActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 PatternRegistrationActivity_.intent(RegisterActivity.this).start();
-
+                                RegisterActivity.this.finish();
                             }
                         });
                     }
